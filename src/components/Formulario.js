@@ -1,4 +1,5 @@
 import React, { Fragment, useState } from 'react';
+import { v4 } from 'uuid';
 
 const Formulario = () => {
     // Create appointment states
@@ -33,8 +34,11 @@ const Formulario = () => {
             return;
         }
 
-        // Assign an ID
+        // Remove prev message
+        setError(false);
 
+        // Assign an ID
+        appointment.id = v4();
 
         //Create appointment
 
