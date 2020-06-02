@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 
 const Formulario = () => {
-    // Create appointment state
+    // Create appointment states
     const [appointment, setAppointment] = useState({
         pet: '',
         owner: '',
@@ -9,6 +9,8 @@ const Formulario = () => {
         hour: '',
         symptoms: ''
     }) 
+
+    const [error, setError] = useState(false);
 
     // Function that executes when the user writes in the form
     const handleChange = e => {
@@ -21,11 +23,38 @@ const Formulario = () => {
     // Get values
     const {pet, owner, date, hour, symptoms } = appointment;
 
+    // When user press submit appointment
+    const submitAppointment = e => {
+        e.preventDefault();
+
+        // Validation
+        if (pet.trim() === '' || owner.trim() === '' || date.trim() === '' || hour.trim() === '' || symptoms.trim() === '') {
+            setError(true);
+            return;
+        }
+
+        // Assign an ID
+
+
+        //Create appointment
+
+
+        // Reset form
+
+    }
+
     return (
         <Fragment>
             <h2>Create appointment</h2>
 
-            <form>
+            {error
+                ? <p className="alerta-error">All fields are required</p>
+                : null
+            }
+
+            <form
+                onSubmit={submitAppointment}
+            >
                 <label>Pet's name</label>
                 <input
                     type="text"
