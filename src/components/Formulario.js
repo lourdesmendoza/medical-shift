@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { v4 } from 'uuid';
 
-const Formulario = () => {
+const Formulario = ({ createAppointment }) => {
     // Create appointment states
     const [appointment, setAppointment] = useState({
         pet: '',
@@ -41,10 +41,17 @@ const Formulario = () => {
         appointment.id = v4();
 
         //Create appointment
+        createAppointment(appointment);
 
 
         // Reset form
-
+        setAppointment({
+            pet: '',
+            owner: '',
+            date: '',
+            hour: '',
+            symptoms: ''
+        })
     }
 
     return (
