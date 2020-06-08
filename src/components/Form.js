@@ -1,7 +1,7 @@
 import React, { Fragment, useState } from 'react';
 import { v4 } from 'uuid';
 
-const Formulario = ({ createAppointment }) => {
+const Form = ({ createAppointment }) => {
     // Create appointment states
     const [appointment, setAppointment] = useState({
         pet: '',
@@ -121,4 +121,4 @@ const Formulario = ({ createAppointment }) => {
     );
 }
  
-export default Formulario;
+export default Form;

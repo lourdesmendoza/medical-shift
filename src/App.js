@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Appointment from './components/Appointment';
-import Formulario from './components/Formulario';
+import Form from './components/Form';
 
 function App() {
 
@@ -54,7 +55,7 @@ function App() {
 			<div className="container">
 				<div className="row">
 					<div className="one-half column">
-						<Formulario
+						<Form
 							createAppointment={createAppointment}
 						/>
 					</div>
@@ -76,4 +77,7 @@ function App() {
 	)
 }
 
+Form.propTypes = {
+	createAppointment: PropTypes.func.isRequired
+}
 export default App;
