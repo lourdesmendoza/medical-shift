@@ -1,11 +1,30 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import Appointment from './components/Appointment';
 import Formulario from './components/Formulario';
 
 function App() {
 
+	//Appointment at localStorage
+	let initAppointment = JSON.parse(localStorage.getItem('appointment'));
+
+	if (!initAppointment) {
+		initAppointment = [];
+	}
+
 	// Array appointments
-	const [appointments, saveAppointments] = useState([]);
+	const [appointments, saveAppointments] = useState([initAppointment]);
+
+
+	//useEffect to perform certain operations when the state changes
+	//useEffect like componentDidMount and componentDidUpdate in the same function
+	useEffect(() => {
+		if(initAppointment) {
+			localStorage.setItem('appointment', JSON.stringify(appointments));
+		} else {
+			localStorage.setItem('appointment', JSON.stringify([]))
+		}
+	}, [appointments, initAppointment])
+
 
 	// Function to take current appointments and add new ones
 	const createAppointment = appointment => {
@@ -15,12 +34,14 @@ function App() {
 		])
 	}
 
+
 	//Remove appointment by ID
 	const removeAppointment = (id) => {
 		const newAppointment  = appointments.filter(appointment => appointment.id !== id);
 
 		saveAppointments(newAppointment);
 	}
+
 
 	// Conditional message
 	const title = appointments.length === 0 ? 'No appointments' : 'Manage your appointments';
