@@ -15,10 +15,20 @@ function App() {
 		])
 	}
 
+	//Remove appointment by ID
+	const removeAppointment = (id) => {
+		const newAppointment  = appointments.filter(appointment => appointment.id !== id);
+
+		saveAppointments(newAppointment);
+	}
+
+	// Conditional message
+	const title = appointments.length === 0 ? 'No appointments' : 'Manage your appointments';
+
 
 	return (
 		<Fragment>
-			<h1>Administrador de pacientes</h1>
+			<h1>Appointment manager</h1>
 
 			<div className="container">
 				<div className="row">
@@ -28,12 +38,13 @@ function App() {
 						/>
 					</div>
 					<div className="one-half column">
-						<h2>Manage your appointments</h2>
+						<h2>{title}</h2>
 
 						{appointments.map(appointment => (
 							<Appointment
 								key={appointment.id}
 								appointment={appointment}
+								removeAppointment={removeAppointment}
 							/>
 						))}
 					</div>
